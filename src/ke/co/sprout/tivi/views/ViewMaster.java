@@ -1,22 +1,12 @@
 package ke.co.sprout.tivi.views;
 
-/*
- * Copyright © 2011 Nokia Corporation. All rights reserved.
- * Nokia and Nokia Connecting People are registered trademarks of Nokia Corporation. 
- * Oracle and Java are trademarks or registered trademarks of Oracle and/or its
- * affiliates. Other product and company names mentioned herein may be trademarks
- * or trade names of their respective owners. 
- * See LICENSE.TXT for license information.
- */
-
-
-import com.nokia.example.weatherapp.components.ViewStack;
 import javax.microedition.lcdui.Alert;
 import javax.microedition.lcdui.AlertType;
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
 import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
+import ke.co.sprout.tivi.components.ViewStack;
 
 /**
  * Singleton class for handling application views. Handles view switching.
@@ -24,7 +14,7 @@ import javax.microedition.lcdui.Displayable;
 public class ViewMaster implements CommandListener {
 
     public static final int VIEW_NOVIEW = -1;
-    public static final int VIEW_WEATHER = 0;
+    public static final int VIEW_HOME = 0;
     public static final int VIEW_SETTINGS = 1;
     public static final int VIEW_LOCATIONS = 2;
     public static final int VIEW_TEMPERATURE = 3;
@@ -41,10 +31,11 @@ public class ViewMaster implements CommandListener {
     private Command addCmd = new Command("Add", Command.SCREEN, 2);
     private Display display;
 //    private WeatherView weatherView;
-//    private SettingsView settingsView;
+    private SettingsView settingsView;
 //    private LocationsView locationsView;
-//    private SearchView searchView;
-//    private ViewStack viewStack = new ViewStack();
+    private SearchView searchView;
+    private ViewStack viewStack = new ViewStack();
+    private HomeView homeView;
 
     private ViewMaster() {
     }
@@ -79,12 +70,12 @@ public class ViewMaster implements CommandListener {
         switch (id) {
             case VIEW_SETTINGS:
                 return settingsView;
-            case VIEW_LOCATIONS:
-                return locationsView;
+//            case VIEW_LOCATIONS:
+//                return locationsView;
             case VIEW_SEARCH:
                 return searchView;
             default:
-                return weatherView;
+                return homeView;
         }
     }
 
@@ -118,31 +109,31 @@ public class ViewMaster implements CommandListener {
      * @param dsplbl The Displayable on which this event has occurred
      */
     public void commandAction(Command cmd, Displayable dsplbl) {
-        if (cmd == exitCmd) {
-            weatherView.removeCommand(locationCmd);
-            weatherView.removeCommand(exitCmd);
-            weatherView.removeCommand(settingsCmd);
-            weatherView.removeCommand(goCmd);
-            weatherView.showAdAndExit();
-        } else if (cmd == backCmd || cmd == cancelCmd) {
-            backView();
-        } else if (cmd == locationCmd) {
-            openView(VIEW_LOCATIONS);
-        } else if (cmd == settingsCmd) {
-            openView(VIEW_SETTINGS);
-        } else if (cmd == addCmd && activeView == VIEW_LOCATIONS) {
-            openView(VIEW_SEARCH);
-        } else if (cmd == goCmd) {
-            weatherView.launchAdEndpoint();
-        }
+//        if (cmd == exitCmd) {
+//            weatherView.removeCommand(locationCmd);
+//            weatherView.removeCommand(exitCmd);
+//            weatherView.removeCommand(settingsCmd);
+//            weatherView.removeCommand(goCmd);
+//            weatherView.showAdAndExit();
+//        } else if (cmd == backCmd || cmd == cancelCmd) {
+//            backView();
+//        } else if (cmd == locationCmd) {
+//            openView(VIEW_LOCATIONS);
+//        } else if (cmd == settingsCmd) {
+//            openView(VIEW_SETTINGS);
+//        } else if (cmd == addCmd && activeView == VIEW_LOCATIONS) {
+//            openView(VIEW_SEARCH);
+//        } else if (cmd == goCmd) {
+//            weatherView.launchAdEndpoint();
+//        }
     }
 
     /**
      * Starts location retrieval
      */
-    public void startLocationFinder() {
-        weatherView.startOrUpdateLocationFinder();
-    }
+//    public void startLocationFinder() {
+//        weatherView.startOrUpdateLocationFinder();
+//    }
 
     /**
      * Displays an alert
@@ -151,7 +142,7 @@ public class ViewMaster implements CommandListener {
      * @param type Type of the alert
      */
     public void showAlert(String title, String alertText, AlertType type) {
-        if (!weatherView.isClosing()) {
+        if (!homeView.isClosing()) {
             final Alert alert = new Alert(title, alertText, null, type);
             display.setCurrent(alert, display.getCurrent());
         }
@@ -178,10 +169,15 @@ public class ViewMaster implements CommandListener {
 //        locationsView.addCommand(addCmd);
 //        locationsView.addCommand(backCmd);
 //        locationsView.setCommandListener(this);
-//
-//        searchView = new SearchView();
-//        searchView.addCommand(cancelCmd);
-//        searchView.setCommandListener(this);
+
+        searchView = new SearchView();
+        searchView.addCommand(cancelCmd);
+        searchView.setCommandListener(this);
+        
+        homeView = new HomeView();
+        homeView.addCommand(exitCmd);
+        homeView.addCommand(settingsCmd);
+        homeView.setCommandListener(this);
     }
 
     /**
@@ -208,9 +204,9 @@ public class ViewMaster implements CommandListener {
      */
     public void showGoCommmand(boolean show) {
         if (show) {
-            weatherView.addCommand(goCmd);
+            homeView.addCommand(goCmd);
         } else {
-            weatherView.removeCommand(goCmd);
+            homeView.removeCommand(goCmd);
         }
 
     }
