@@ -1,0 +1,120 @@
+<%@ page import="com.kimenye.budget.Account" %>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="layout" content="main"/>
+    <g:set var="entityName" value="${message(code: 'account.label', default: 'Account')}"/>
+    <title><g:message code="default.create.label" args="[entityName]"/></title>
+</head>
+
+<body>
+<div class="nav">
+    <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a>
+    </span>
+    <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label"
+                                                                           args="[entityName]"/></g:link></span>
+</div>
+
+<div class="body">
+    <h1><g:message code="default.create.label" args="[entityName]"/></h1>
+    <g:if test="${flash.message}">
+        <div class="message">${flash.message}</div>
+    </g:if>
+    <g:hasErrors bean="${accountInstance}">
+        <div class="errors">
+            <g:renderErrors bean="${accountInstance}" as="list"/>
+        </div>
+    </g:hasErrors>
+    <g:form action="save">
+        <div class="dialog">
+            <table>
+                <tbody>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="accountName"><g:message code="account.accountName.label"
+                                                            default="Account Name"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'accountName', 'errors')}">
+                        <g:textField name="accountName" value="${accountInstance?.accountName}"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="accountType"><g:message code="account.accountType.label"
+                                                            default="Account Type"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'accountType', 'errors')}">
+                        <g:select name="accountType" from="${accountInstance.constraints.accountType.inList}"
+                                  value="${accountInstance?.accountType}" valueMessagePrefix="account.accountType"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="cashCreditLimit"><g:message code="account.cashCreditLimit.label"
+                                                                default="Cash Credit Limit"/></label>
+                    </td>
+                    <td valign="top"
+                        class="value ${hasErrors(bean: accountInstance, field: 'cashCreditLimit', 'errors')}">
+                        <g:textField name="cashCreditLimit"
+                                     value="${fieldValue(bean: accountInstance, field: 'cashCreditLimit')}"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="creditLimit"><g:message code="account.creditLimit.label"
+                                                            default="Credit Limit"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'creditLimit', 'errors')}">
+                        <g:textField name="creditLimit"
+                                     value="${fieldValue(bean: accountInstance, field: 'creditLimit')}"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="openingBalance"><g:message code="account.openingBalance.label"
+                                                               default="Opening Balance"/></label>
+                    </td>
+                    <td valign="top"
+                        class="value ${hasErrors(bean: accountInstance, field: 'openingBalance', 'errors')}">
+                        <g:textField name="openingBalance"
+                                     value="${fieldValue(bean: accountInstance, field: 'openingBalance')}"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="baseCurrency"><g:message code="account.baseCurrency.label"
+                                                             default="Base Currency"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'baseCurrency', 'errors')}">
+                        <g:select name="baseCurrency.id" from="${com.kimenye.budget.Currency.list()}" optionKey="id"
+                                  value="${accountInstance?.baseCurrency?.id}"/>
+                    </td>
+                </tr>
+
+                <tr class="prop">
+                    <td valign="top" class="name">
+                        <label for="inActive"><g:message code="account.inActive.label" default="In Active"/></label>
+                    </td>
+                    <td valign="top" class="value ${hasErrors(bean: accountInstance, field: 'inActive', 'errors')}">
+                        <g:checkBox name="inActive" value="${accountInstance?.inActive}"/>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="buttons">
+            <span class="button"><g:submitButton name="create" class="save"
+                                                 value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
+        </div>
+    </g:form>
+</div>
+</body>
+</html>

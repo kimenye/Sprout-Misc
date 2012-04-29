@@ -1,2 +1,10 @@
-/build/
-/dist/
+TiVi-S40/build/
+TiVi-S40/dist/
+budget/.idea/
+budget/.classpath
+budget/grails-app/out/
+*.DS_Store
+tiviflask/*bootstrap-*
+tiviflask/*ckeditor*
+tiviflask/*elfinder*
+tiviflask/*elrte*

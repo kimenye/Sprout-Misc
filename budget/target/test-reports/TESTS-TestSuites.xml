@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="MacBookTK.local" id="0" name="AccountViewServiceIntegrationTests" package="com.kimenye.budget" tests="4" time="1.068" timestamp="2011-07-29T00:26:10">
+      <properties />
+
+      <testcase classname="com.kimenye.budget.AccountViewServiceIntegrationTests" name="testTrueOpeningBalance" time="0.598" />
+
+      <testcase classname="com.kimenye.budget.AccountViewServiceIntegrationTests" name="testBalance" time="0.24" />
+
+      <testcase classname="com.kimenye.budget.AccountViewServiceIntegrationTests" name="testEndMonthsBetween" time="0.053" />
+
+      <testcase classname="com.kimenye.budget.AccountViewServiceIntegrationTests" name="testMonthlyTransactions" time="0.107" />
+
+      <system-out><![CDATA[--Output from testTrueOpeningBalance--
+--Output from testBalance--
+--Output from testEndMonthsBetween--
+--Output from testMonthlyTransactions--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testTrueOpeningBalance--
+--Output from testBalance--
+--Output from testEndMonthsBetween--
+--Output from testMonthlyTransactions--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="MacBookTK.local" id="1" name="BudgetViewServiceIntegrationTests" package="com.kimenye.budget" tests="5" time="1.248" timestamp="2011-07-29T00:26:12">
+      <properties />
+
+      <testcase classname="com.kimenye.budget.BudgetViewServiceIntegrationTests" name="testOverallBalance" time="0.447" />
+
+      <testcase classname="com.kimenye.budget.BudgetViewServiceIntegrationTests" name="testAccountClosingBalance" time="0.161" />
+
+      <testcase classname="com.kimenye.budget.BudgetViewServiceIntegrationTests" name="testOverallTotals" time="0.137" />
+
+      <testcase classname="com.kimenye.budget.BudgetViewServiceIntegrationTests" name="testBudgetView" time="0.429" />
+
+      <testcase classname="com.kimenye.budget.BudgetViewServiceIntegrationTests" name="testCreateTransactions" time="0.048" />
+
+      <system-out><![CDATA[--Output from testOverallBalance--
+--Output from testAccountClosingBalance--
+--Output from testOverallTotals--
+--Output from testBudgetView--
+--Output from testCreateTransactions--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testOverallBalance--
+--Output from testAccountClosingBalance--
+--Output from testOverallTotals--
+--Output from testBudgetView--
+--Output from testCreateTransactions--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="MacBookTK.local" id="2" name="CurrencyServiceIntegrationTests" package="com.kimenye.budget" tests="2" time="0.167" timestamp="2011-07-29T00:26:13">
+      <properties />
+
+      <testcase classname="com.kimenye.budget.CurrencyServiceIntegrationTests" name="testAudToKshs" time="0.144" />
+
+      <testcase classname="com.kimenye.budget.CurrencyServiceIntegrationTests" name="testKshsToAud" time="0.019" />
+
+      <system-out><![CDATA[--Output from testAudToKshs--
+--Output from testKshsToAud--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testAudToKshs--
+--Output from testKshsToAud--
+]]></system-err>
+
+  </testsuite>
+</testsuites>
