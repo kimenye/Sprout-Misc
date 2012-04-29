@@ -4,7 +4,4 @@ budget/.idea/
 budget/.classpath
 budget/grails-app/out/
 *.DS_Store
-tiviflask/*bootstrap-*
-tiviflask/*ckeditor*
-tiviflask/*elfinder*
-tiviflask/*elrte*
+tiviflask/
